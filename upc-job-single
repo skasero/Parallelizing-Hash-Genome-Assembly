@@ -1,0 +1,54 @@
+#!/bin/bash
+#SBATCH -A sc5fp4p # 2017 XSEDE Applications of Parallel Computing Course Allocation
+#SBATCH -J upc-single
+#SBATCH -o upc-singleNode.stdout
+#SBATCH -N 1
+#SBATCH -C EGRESS
+#SBATCH --ntasks-per-node 28        
+#SBATCH -p RM
+#SBATCH -t 00:7:00
+echo Test Dataset Below 
+upcxx-run -n 1 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 2 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 4 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 8 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 16 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 32 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -n 64 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+echo Large Dataset Below
+upcxx-run -n 1 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 2 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 4 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 8 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 16 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -n 64 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+echo Human Dataset Below
+upcxx-run -n 1 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 2 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 4 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 8 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 16 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -n 64 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*

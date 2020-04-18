@@ -1,0 +1,36 @@
+#!/bin/bash
+#SBATCH -A sc5fp4p # 2017 XSEDE Applications of Parallel Computing Course Allocation
+#SBATCH -J upc-multiple
+#SBATCH -o upc-multipleNode.stdout
+#SBATCH -N 8
+#SBATCH -n 32
+#SBATCH --ntasks-per-node 28
+#SBATCH -p RM
+#SBATCH -t 00:7:00 
+echo Running Human on 8
+upcxx-run -N 1 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -N 2 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -N 4 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+upcxx-run -N 8 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/human-chr14-synthetic.txt test
+rm -rf test*
+echo Running Test on 8
+upcxx-run -N 1 -n 32 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -N 2 -n 32 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -N 4 -n 32 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+upcxx-run -N 8 -n 32 -shared-heap 50% ./kmer_hash-19 hw3-datasets/test.txt test
+rm -rf test*
+echo Running Large on 8
+upcxx-run -N 1 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -N 2 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -N 4 -n 32 -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
+upcxx-run -N 8 -n 32  -shared-heap 50% ./kmer_hash-51 hw3-datasets/large.txt test
+rm -rf test*
